@@ -13,7 +13,7 @@
 
 **Done.** Everything is installed.
 
-## Lauching
+## Launching
 
 1. Open your command console and go to the directory with the project. For example:
 ~~~bash
@@ -85,6 +85,8 @@ into the "Figure Parameters" editor box:
 ![example_2](https://uc899d5ad4840e79656dc54353d7.previews.dropboxusercontent.com/p/thumb/AAeEkzNOR_qym5O8Ttv7A6etGwXgj3p4VXsrcmJ28-xvn6oWEKUB_GPGiJhb-iE-XKw7HXcB_UmjgBlGp8RKFxkAkTnWytxKsA7G3nXfViOQIL2eNbLpuBz9iiXVJAcgPIQ1FagtpiutqT5FL8Gv-gcAUkXjYR6PloqYLaUkS9TnD0gZXs-rApcAmMNL1rsCpIrk9mt0_o4RafOuF1m_HmaTcO4byYc-cs0okTZldmxDD8wG2ViZ0D5v6tLPQ1CMXCYh9pw1MVKI-dyzI4_6cDFTmbBtiCkgp0765kQmHTiSHX6ZtK3e2eY-ZsVxWKnUWYKMpRCQ8rTQFCxZ_sgd5Aft7goW3LTllBALYlVuVriADPu9IiwFmfUdESnqt659StXrAEZ8-V55U3qsGdPwFGbUAW68mRSQbZ40H2QwBcVnKF1e3n9F3szBuXLOCYU_K3LeykXtiVY16blYS_hXMTY5/p.png?fv_content=true&size_mode=5)
 
 Click a green button above the figure parameters editor *"Create figure only"*.
+
+**The first branch of the JSON is "plot.bar" in this example. However, you can input any plotting function "x.y or x" which can produce plots out of a DataFrame "df" as "df.x.y(...) or df.x(...)". The content of the "plot.bar" branch would be "keyword-unpacked" when calling "df.plot.bar(**kwgs)".**
 
 You will see the result:
 ![example_1_and_2](https://ucbc047b0f0d8cb881ece5c2bc1e.previews.dropboxusercontent.com/p/thumb/AAd0mos3mAtnPRaDbG55OZ6p7YrHEurB32RvPG7TIEkD9OAs9mR4QSZjyE_yMHhLgNNYKgXiXoLGNhwUWfNf-W6ZaxD3bQxM-DWLUCA8CIh_0AOubCh1wfYsruz7Hpax4jFcW8Vq9W85S50ojxAsYPdSRjyqCdQtLYxQxB3M4QRFNqvU6e53UY6Kh-DXaxJ4jgI6Smt-RRenBd8ixShq7fdtEnoq2hAVTzkpZ8geGhUJLvQgE5OL6x2bmKdawLVB4dNWvbOksCcW-K2SlTK8_vWTs4VaqV2tNAQHPyNd5Fh1v6b4fKMjX4eiSwZxz703orpXCPXYNMGQpAcvxl2FzL1zauiBK8pHZYSLw1EzF08nMdZfD3-XnL4YFt18wrFDDDVKd2LVQlnHl7ZQvhEOw3aP1VvdaPW3eyv_x33RWW3HmGxlbCtDj2oIarhAtma_RggvaxxZJ1je8_jGYc-i3SQo/p.png?fv_content=true&size_mode=5)
