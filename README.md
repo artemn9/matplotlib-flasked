@@ -1,4 +1,5 @@
 # Matplotlib-Flasked version 1.0
+![logo](https://uccc9f5da42f4b2523716feb0c45.previews.dropboxusercontent.com/p/thumb/AAcg6unJmRE5T5-ngVuFXT7vSpBsxtA8J1yX0yf8lkBGKyp_yPtok4VOldKKbSBtwIRi1TVbI2wT17uW75VJmjqS6dnxOdObF0Ai_zwuWtUepq-BXGu81KMQI4nltzKhi56NdtFlDAhDXylC3OU1YrxmDJHfPGTqVNKQCMTg-BVHfeL6r9lbAOxyXulOg4Wjgo3TD0BtlD-v8rbmMGgaRxYP0ji6Td2a1bPo3SV9AHDJYIISNXkx3YkENWN0rleqAJSIOoH7oBGsRBIQ_bBfdCtQSb59X9Q1SWJqos7SNcybS-3HxFeu4NZAhy1UAMbwQxVpADwsf7o_QVJH_dF7-eo95PAJl7qTVpGr-XdTVddUIBvYCAQtd_RxDbOnN7XSkc0vfPOk5VPxmWlGXJslitDalCuB0MhAy0-_FrLHxgpqEJbqhOo1MC8gDS0g9ZmM7rIsNGteVIJjER_kWTleWAHE/p.png?fv_content=true&size_mode=5)
 > Here I would like to present you with a web-based interface for creating and editing Matplotlib figures. For data and other scientists!
 
 ## Installation
