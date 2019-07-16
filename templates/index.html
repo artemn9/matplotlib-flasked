@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Matplotlib</title>
+    <style>
+      h1 {
+	  color:#e196b6;
+	  background-color:#f0f0f0;
+	  padding-bottom:5px;
+	  padding-right:5px;
+	  border-bottom:1px solid #c1c1c1;
+      }
+      table {
+	  border: none;
+	  border-collapse: collapse;
+	  width: 100%;
+	  font-size: 8px;
+      }
+      th, td {
+	  border: none;
+	  padding: 8px;
+	  text-align: left;
+	  border-bottom: 1px solid #f0f0f0;
+	  font-size: 8pt;
+      }
+      code, pre, ul, li {
+	  margin-top: 0;
+	  margin-bottom: 0;
+	  padding-top: 0;
+	  padding-bottom: 0;
+	  color: #e83e8b;
+      }
+      #Figure_Parameters, #Python_Code {
+	  height: 255px;
+	  border:1px solid #c1c1c1;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <h1 class="text-right">#python #pandas #matplotlib</h1>
+    <form>
+    <div class="container-fluid">
+
+	  <!-- Figure parameters -->
+	  
+
+		<div class="row justify-content-md-center">
+		  <div class="col-6">
+		    <img class="img-fluid" alt="An empty image" id="Picture">
+		  </div>      
+
+		  <div class="col" id="Repr">
+		    
+		    An empty dataset
+		    
+		  </div>
+		  
+		</div>
+		
+
+      <hr>
+
+      <!-- Python code -->
+      <div class="row">
+	<div class="col-5">
+	  
+	  <label for="Figure_Parameters">Figure Parameters:</label>
+	  <button type="button" class="btn btn-outline-success btn-sm float-right" id="Update_Figure">Create figure only</button>
+	  
+	  <div id="Figure_Parameters"></div>	 
+	  
+	</div>
+	<div class="col-5">
+
+	  <label for="Python_Code">Python Code:</label>
+	  <button type="button" class="btn btn-outline-success btn-sm float-right" id="Run_Code">Run code only</button>
+	  <div id="Python_Code"></div>
+
+	  
+	</div>
+	<div class="col-2">
+
+	  <div class="container-fluid">
+	    
+	    <div class="row">
+	      <button type="button" class="btn btn-outline-dark btn-lg btn-block" id="Run_Both">Initialize</button>
+	    </div>
+	    <div class="row"><hr></div>
+	    <div class="row">
+	      <div class="col">
+		<p>Color Picker:</p>
+		<input type="color" id="my_color" value="#78d5f6">
+		<label for="my_color" id="Color_Value">#78d5f6</label>
+	      </div>
+	    </div>
+	    
+	  </div>
+	  
+
+	</div>
+	
+      </div>
+      <hr>
+
+      <div class="row">
+	
+	<div class="col-5" id="Picture_History">
+	  Empty Figure History
+	</div>
+	
+	<div class="col-5" id="Code_History">
+	  Empty Code History
+	</div>
+	
+      </div>
+
+      <div class="row">
+	
+	<div class="col text-right">
+	  Credits to: <a href="https://ace.c9.io/"><img src='static/ace-logo.png' height="50px"></a> and <a href="https://getbootstrap.com/"><img src='static/bootstrap-logo.png' height="50px"></a>
+	</div>
+	
+      </div>
+      
+    </div>
+    </form>
+    
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://pagecdn.io/lib/ace/1.4.5/ace.js" integrity="sha256-5Xkhn3k/1rbXB+Q/DX/2RuAtaB4dRRyQvMs83prFjpM=" crossorigin="anonymous"></script>
+
+
+    <script>
+      
+      function refresh_request() {
+
+	  var id = $(this).attr('id');
+      
+	  var request = new XMLHttpRequest();
+	  request.addEventListener('load', response_python);
+	  request.open('POST', {{ url_for('process')|tojson }});
+
+	  var data = new FormData();
+	  if (id == "Run_Code" | id == "Run_Both") {
+	      data.append('Python_Code', editor_python.getValue());
+	  }
+	  if (id == "Update_Figure" | id == "Run_Both") {
+	      data.append('Figure_Parameters', editor_json.getValue());
+	  }
+	  request.send(data);
+      }
+
+      function response_python() {
+	  if ($("#Run_Both").text() == 'Initialize') {
+	      $("#Run_Both").text('Run everything');
+	  }
+	  var data = JSON.parse(this.responseText);
+	  $("#Picture").attr("src",data.src);
+	  $("#Repr").html(data.repr);
+	  $("#Code_History").html(data.codes);
+	  $("#Picture_History").html(data.graphs);
+
+	  var items = $('#carousel .item');
+	  var heights = [];
+	  var tallest;
+
+	  items.each(function() { //add heights to array
+            heights.push($(this).height()); 
+          });
+
+	  tallest = Math.max.apply(null, heights); //cache largest value
+          items.each(function() {
+              $(this).style.min_height=tallest + 'px';
+          });
+
+      }
+
+      function update_color() {
+	  $("#Color_Value").text($('#my_color').val());
+      }
+      $("#my_color").change(update_color);
+      $("#Run_Code").click(refresh_request);
+      $("#Update_Figure").click(refresh_request);
+      $("#Run_Both").click(refresh_request);
+      
+    </script>
+
+    
+    <script>
+      var editor_python = ace.edit("Python_Code");
+      var editor_json = ace.edit("Figure_Parameters");
+      
+      editor_python.setTheme("ace/theme/textmate");
+      editor_json.setTheme("ace/theme/textmate");
+      
+      editor_python.session.setMode("ace/mode/python");
+      editor_json.session.setMode("ace/mode/jsoniq");
+      
+      document.getElementById('Python_Code').style.fontSize='14px';
+      document.getElementById('Figure_Parameters').style.fontSize='14px';
+    </script>
+
+  
+
+  </body>
+  
+</html>
